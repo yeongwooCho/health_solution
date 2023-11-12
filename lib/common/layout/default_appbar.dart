@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:health_solution/common/const/text_style.dart';
 
 import '../const/colors.dart';
 
@@ -14,7 +15,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.leading,
     this.action,
-    this.elevation = 0.3,
+    this.elevation = 0.0,
   }) : super(key: key);
 
   @override
@@ -23,11 +24,7 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Text(
         title,
-        style: const TextStyle(
-          fontSize: 18.0,
-          fontWeight: FontWeight.bold,
-          color: MyColor.defaultText,
-        ),
+        style: MyTextStyle.bodyTitleBold,
       ),
       leading: leading,
       actions: action,
@@ -39,5 +36,5 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize =>
-      const Size(double.infinity, DefaultAppBar.defaultAppBarHeight);
+      const Size(double.infinity, DefaultAppBar.defaultAppBarHeight,);
 }
