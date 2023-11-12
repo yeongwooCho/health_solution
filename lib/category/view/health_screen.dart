@@ -20,6 +20,7 @@ class _HealthScreenState extends State<HealthScreen> {
     return DefaultLayout(
       appbar: const DefaultAppBar(title: "건강 카테고리"),
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 24.0),
           child: Column(
@@ -30,7 +31,7 @@ class _HealthScreenState extends State<HealthScreen> {
                 children: [
                   Expanded(
                     child: CustomContainerButton(
-                      title: '일',
+                      title: '관절/연골',
                       isSelected: selectedItemIndex == 0,
                       onTap: () {
                         selectedItemIndex = 0;
@@ -41,7 +42,7 @@ class _HealthScreenState extends State<HealthScreen> {
                   const SizedBox(width: 16.0),
                   Expanded(
                     child: CustomContainerButton(
-                      title: '주',
+                      title: '피부 관리',
                       isSelected: selectedItemIndex == 1,
                       onTap: () {
                         selectedItemIndex = 1;
@@ -52,7 +53,7 @@ class _HealthScreenState extends State<HealthScreen> {
                   const SizedBox(width: 16.0),
                   Expanded(
                     child: CustomContainerButton(
-                      title: '월',
+                      title: '항산화',
                       isSelected: selectedItemIndex == 2,
                       onTap: () {
                         selectedItemIndex = 2;

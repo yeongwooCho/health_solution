@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/layout/default_button.dart';
+import 'package:health_solution/common/variable/routes.dart';
 
 import '../../common/const/text_style.dart';
 import '../../common/layout/default_appbar.dart';
@@ -33,7 +34,11 @@ class SurveyOnBoardingScreen extends StatelessWidget {
             ),
             const SizedBox(height: 40.0),
             DefaultElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushNamed(
+                  RouteNames.commonQuestion,
+                );
+              },
               child: const Text('설문조사 시작하기'),
             ),
           ],

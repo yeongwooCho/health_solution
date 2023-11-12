@@ -36,6 +36,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   Widget build(BuildContext context) {
     return DefaultLayout(
       child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
         child: Form(
           key: formKey,
           autovalidateMode: AutovalidateMode.always,

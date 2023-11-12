@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/view/custom_completion_screen.dart';
+import 'package:health_solution/health_check/view/common_question_screen.dart';
 import 'package:health_solution/user/view/find_email_screen.dart';
 
 import '../../user/view/email_login_screen.dart';
@@ -25,6 +26,9 @@ class RouteNames {
 
   // root tab
   static const String root = '/root';
+
+  // survey
+  static const String commonQuestion = '/common/question';
 }
 
 Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -59,4 +63,7 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   RouteNames.findEmail: (_) => FindEmailScreen(),
   RouteNames.findPassword: (_) => FindPasswordScreen(),
   RouteNames.findPasswordChange: (_) => FindPasswordChangeScreen(),
+
+  // survey
+  RouteNames.commonQuestion: (_) => CommonQuestionScreen(),
 };

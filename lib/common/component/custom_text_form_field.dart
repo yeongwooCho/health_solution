@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:health_solution/common/const/colors.dart';
 
 import '../const/text_style.dart';
 
@@ -57,6 +58,14 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final baseBorder = OutlineInputBorder(
+      borderSide: const BorderSide(
+        color: MyColor.darkGrey,
+        width: 1.0,
+      ),
+      borderRadius: BorderRadius.circular(8.0),
+    );
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -84,13 +93,19 @@ class CustomTextFormField extends StatelessWidget {
                 // ui
                 style: textStyle,
                 obscureText: obscureText,
+                cursorColor: MyColor.primary,
                 decoration: InputDecoration(
+                  focusColor: MyColor.primary,
                   contentPadding: EdgeInsets.symmetric(
                     vertical: contentPaddingVertical,
-                    horizontal: 12.0,
+                    horizontal: 16.0,
                   ),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(8.0),
+                  border: baseBorder,
+                  focusedBorder: baseBorder.copyWith(
+                    borderSide: const BorderSide(
+                      color: MyColor.primary,
+                      width: 2.0,
+                    ),
                   ),
                   hintText: hintText,
                   suffixIcon: suffixIcon,
