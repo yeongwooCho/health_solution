@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:health_solution/category/view/health_screen.dart';
+import 'package:health_solution/health_check/view/survey_on_boarding_screen.dart';
+import 'package:health_solution/mypage/view/mypage_screen.dart';
 
 import '../const/colors.dart';
 import '../layout/default_layout.dart';
@@ -39,11 +42,12 @@ class _RootTabState extends State<RootTab> with TickerProviderStateMixin {
       ),
       child: Center(
         child: TabBarView(
+          physics: const NeverScrollableScrollPhysics(),
           controller: controller,
           children: [
-            Container(child: Center(child: Text('111'))),
-            Container(child: Center(child: Text('222'))),
-            Container(child: Center(child: Text('333'))),
+            HealthScreen(),
+            SurveyOnBoardingScreen(),
+            MyPageScreen(),
           ],
         ),
       ),
