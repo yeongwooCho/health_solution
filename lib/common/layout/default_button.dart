@@ -31,8 +31,8 @@ class DefaultElevatedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        foregroundColor: foregroundColor,
-        backgroundColor: backgroundColor,
+        foregroundColor: isBorderSide ? backgroundColor : foregroundColor,
+        backgroundColor: isBorderSide ? foregroundColor : backgroundColor,
         textStyle: textStyle,
         elevation: elevation,
         minimumSize: minimumSize,
@@ -40,7 +40,7 @@ class DefaultElevatedButton extends StatelessWidget {
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
               side: isBorderSide
-                  ? BorderSide(width: 2.0, color: foregroundColor)
+                  ? BorderSide(width: 2.0, color: backgroundColor)
                   : BorderSide.none,
             ),
       ),
