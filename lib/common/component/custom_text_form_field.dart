@@ -107,7 +107,7 @@ class CustomTextFormField extends StatelessWidget {
                 enabled: enabled,
               ),
             ),
-            if (button != null) const SizedBox(width: 12.0),
+            if (button != null) const SizedBox(width: 8.0),
             if (button != null) button!,
           ],
         ),
