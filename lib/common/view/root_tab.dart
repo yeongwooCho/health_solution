@@ -11,23 +11,21 @@ class RootTab extends StatefulWidget {
 }
 
 class _RootTabState extends State<RootTab> with TickerProviderStateMixin {
-  TabController? controller;
+  late TabController controller;
   bool isLoading = false;
 
   @override
   void initState() {
     super.initState();
 
-    controller = TabController(
-      length: getItems().length,
-      vsync: this,
-    );
-    controller?.addListener(tabListener);
+    controller = TabController(length: getItems().length, vsync: this);
+    controller.addListener(tabListener);
   }
 
   @override
   void dispose() {
-    controller?.dispose();
+    controller.removeListener(tabListener);
+    controller.dispose();
 
     super.dispose();
   }
@@ -61,10 +59,10 @@ class _RootTabState extends State<RootTab> with TickerProviderStateMixin {
       unselectedItemColor: MyColor.middleGrey,
       unselectedFontSize: 12.0,
       onTap: (int index) {
-        controller?.animateTo(index);
+        controller.animateTo(index);
       },
       items: getItems(),
-      currentIndex: controller!.index,
+      currentIndex: controller.index,
     );
   }
 

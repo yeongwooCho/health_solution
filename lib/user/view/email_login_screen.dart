@@ -40,11 +40,12 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
           key: formKey,
           autovalidateMode: AutovalidateMode.always,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 32.0, horizontal: 24.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 80.0),
+                const SizedBox(height: 48.0),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 60.0),
                   child: Image.asset("asset/logo/logo.png"),

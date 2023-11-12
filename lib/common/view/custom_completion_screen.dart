@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/layout/default_appbar.dart';
+import 'package:health_solution/common/layout/default_button.dart';
 
 import '../const/colors.dart';
 import '../const/text_style.dart';
 import '../layout/default_layout.dart';
+import '../variable/routes.dart';
 
 class CustomCompletionScreen extends StatelessWidget {
   final String? appBarTitle;
   final String contentTitle;
   final String? contentDescription;
-  final Widget actionWidget;
 
   const CustomCompletionScreen({
     super.key,
     this.appBarTitle,
     required this.contentTitle,
-    required this.contentDescription,
-    required this.actionWidget,
+    this.contentDescription,
   });
 
   @override
@@ -30,31 +30,41 @@ class CustomCompletionScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 16.0),
-            Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Icon(
-                    Icons.check_circle,
-                    size: 48.0,
-                    color: MyColor.primary,
-                  ),
-                  const SizedBox(height: 16.0),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.check_circle,
+                  size: 48.0,
+                  color: MyColor.primary,
+                ),
+                const SizedBox(height: 16.0),
+                Text(
+                  contentTitle,
+                  style: MyTextStyle.headTitle,
+                  textAlign: TextAlign.center,
+                ),
+                if (contentDescription != null)
                   Text(
-                    contentTitle,
-                    style: MyTextStyle.headTitle,
-                  ),
-                  if (contentDescription != null)
-                    Text(
-                      contentDescription!,
-                      style: MyTextStyle.bodyRegular.copyWith(
-                        fontSize: 24.0,
-                      ),
+                    contentDescription!,
+                    style: MyTextStyle.bodyRegular.copyWith(
+                      fontSize: 24.0,
                     ),
-                ],
-              ),
+                    textAlign: TextAlign.center,
+                  ),
+              ],
             ),
-            actionWidget,
+            DefaultElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  appBarTitle != "회원가입 완료"
+                      ? RouteNames.emailSignIn
+                      : RouteNames.root,
+                  (route) => false,
+                );
+              },
+              child: const Text('초기화면으로 이동'),
+            ),
           ],
         ),
       ),

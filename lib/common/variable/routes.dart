@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:health_solution/common/layout/default_button.dart';
 import 'package:health_solution/common/view/custom_completion_screen.dart';
 import 'package:health_solution/user/view/find_email_screen.dart';
 
@@ -7,11 +6,15 @@ import '../../user/view/email_login_screen.dart';
 import '../../user/view/email_register_screen.dart';
 import '../../user/view/find_password_change_screen.dart';
 import '../../user/view/find_password_screen.dart';
+import '../model/screen_arguments.dart';
 import '../view/root_tab.dart';
 
 class RouteNames {
   // initial
   static const String splash = '/';
+
+  // global
+  static const String completion = '/completion';
 
   // user
   static const String emailSignIn = '/email/sign/in';
@@ -33,6 +36,19 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
   //     title: args.data,
   //   );
   // },
+
+  // global
+  RouteNames.completion: (context) {
+    final args = ModalRoute.of(context)?.settings.arguments
+        as ScreenArguments<Map<String, String>>;
+    final data = args.data;
+
+    return CustomCompletionScreen(
+      appBarTitle: data['appBarTitle'],
+      contentTitle: data['contentTitle'] ?? '',
+      contentDescription: data['contentDescription'],
+    );
+  },
 
   // root tab
   RouteNames.root: (_) => RootTab(),

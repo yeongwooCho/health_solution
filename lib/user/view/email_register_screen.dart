@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/const/colors.dart';
+import 'package:health_solution/common/variable/routes.dart';
 
 import '../../common/component/custom_text_form_field.dart';
 import '../../common/const/text_style.dart';
 import '../../common/layout/default_appbar.dart';
 import '../../common/layout/default_button.dart';
 import '../../common/layout/default_layout.dart';
+import '../../common/model/screen_arguments.dart';
 import '../../common/util/text_validator.dart';
 
 class EmailRegisterScreen extends StatefulWidget {
@@ -36,10 +38,11 @@ class _EmailRegisterScreenState extends State<EmailRegisterScreen> {
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 40.0, horizontal: 24.0),
+          padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              const SizedBox(height: 8.0),
               const Text(
                 '회원가입을 위해\n계정정보를 입력해 주세요.',
                 style: MyTextStyle.headTitle,
@@ -186,9 +189,17 @@ class _EmailRegisterScreenState extends State<EmailRegisterScreen> {
                         phoneText!.isNotEmpty
                     ? null
                     : () {
-                        // Navigator.of(context).pushNamed(
-                        //   RouteNames.emailSignUpSub,
-                        // );
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    RouteNames.completion,
+                        (route) => false,
+                    arguments: ScreenArguments<Map<String, String>>(
+                      data: {
+                        'appBarTitle': '회원가입 완료',
+                        'contentTitle': '회원가입이 정상적으로\n완료되었습니다.',
+                        'contentDescription': '',
+                      },
+                    ),
+                  );
                       },
                 child: const Text('다음'),
               ),

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:health_solution/common/model/screen_arguments.dart';
+import 'package:health_solution/common/variable/routes.dart';
 
 import '../../common/component/custom_text_form_field.dart';
 import '../../common/const/text_style.dart';
 import '../../common/layout/default_appbar.dart';
 import '../../common/layout/default_button.dart';
 import '../../common/layout/default_layout.dart';
-import '../../common/variable/routes.dart';
 
-class FindEmailScreen extends StatefulWidget {
-  const FindEmailScreen({super.key});
+class FindPasswordScreen extends StatefulWidget {
+  const FindPasswordScreen({super.key});
 
   @override
-  State<FindEmailScreen> createState() => _FindEmailScreenState();
+  State<FindPasswordScreen> createState() => _FindPasswordScreenState();
 }
 
-class _FindEmailScreenState extends State<FindEmailScreen> {
+class _FindPasswordScreenState extends State<FindPasswordScreen> {
   bool isRequest = false;
   bool isVerify = false;
 
@@ -25,7 +24,7 @@ class _FindEmailScreenState extends State<FindEmailScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      appbar: const DefaultAppBar(title: '이메일 찾기'),
+      appbar: const DefaultAppBar(title: '비밀번호 찾기'),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 24.0),
         child: Column(
@@ -37,7 +36,7 @@ class _FindEmailScreenState extends State<FindEmailScreen> {
               children: [
                 const SizedBox(height: 8.0),
                 const Text(
-                  '이메일 찾기를 위해\n본인인증을 진행해 주세요.',
+                  '비밀번호 찾기를 위해\n본인인증을 진행해 주세요.',
                   style: MyTextStyle.headTitle,
                 ),
                 const SizedBox(height: 40.0),
@@ -97,16 +96,8 @@ class _FindEmailScreenState extends State<FindEmailScreen> {
               onPressed: phone == null || phone!.isEmpty || !isVerify
                   ? null
                   : () {
-                      Navigator.of(context).pushNamedAndRemoveUntil(
-                        RouteNames.completion,
-                        (route) => false,
-                        arguments: ScreenArguments<Map<String, String>>(
-                          data: {
-                            'appBarTitle': '이메일 찾기 완료',
-                            'contentTitle': '이메일 확인',
-                            'contentDescription': 'health@naver.com',
-                          },
-                        ),
+                      Navigator.of(context).pushNamed(
+                        RouteNames.findPasswordChange,
                       );
                     },
               child: const Text('확인'),
