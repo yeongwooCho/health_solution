@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/const/text_style.dart';
 
-import '../../common/const/colors.dart';
-
 class CategoryContent extends StatelessWidget {
   final String title;
   final String imagePath;

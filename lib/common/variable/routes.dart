@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/view/custom_completion_screen.dart';
 import 'package:health_solution/health_check/view/common_question_screen.dart';
+import 'package:health_solution/health_check/view/survey_completion_screen.dart';
+import 'package:health_solution/health_check/view/survey_controller_screen.dart';
 import 'package:health_solution/user/view/find_email_screen.dart';
 
 import '../../user/view/email_login_screen.dart';
@@ -29,6 +31,8 @@ class RouteNames {
 
   // survey
   static const String commonQuestion = '/common/question';
+  static const String surveyController = '/survey/controller';
+  static const String surveyCompletion = '/survey/completion';
 }
 
 Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -66,4 +70,22 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
 
   // survey
   RouteNames.commonQuestion: (_) => CommonQuestionScreen(),
+  // RouteNames.survey: (context) {
+  //   final args = ModalRoute.of(context)?.settings.arguments
+  //   as ScreenArguments<Map<String, dynamic>>;
+  //   final data = args.data;
+  //
+  //   return SurveyScreen(
+  //     appBarTitle: data['appBarTitle'] ?? '',
+  //     title: data['title'] ?? '',
+  //     items: data['items'] ?? [],
+  //   );
+  // },
+  RouteNames.surveyController: (context) {
+    final args =
+        ModalRoute.of(context)?.settings.arguments as ScreenArguments<int>;
+
+    return SurveyControllerScreen(index: args.data);
+  },
+  RouteNames.surveyCompletion: (_) => SurveyCompletionScreen(),
 };
