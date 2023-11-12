@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:health_solution/common/layout/default_button.dart';
+import 'package:health_solution/common/view/custom_completion_screen.dart';
 import 'package:health_solution/user/view/find_email_screen.dart';
 
 import '../../user/view/email_login_screen.dart';
@@ -10,9 +12,6 @@ import '../view/root_tab.dart';
 class RouteNames {
   // initial
   static const String splash = '/';
-
-  // global
-  static const String completion = '/completion';
 
   // user
   static const String emailSignIn = '/email/sign/in';
