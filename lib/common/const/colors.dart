@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyColor {
   // Main
-  static const primary = Color(0xFF535353);
+  static const primary = Color(0xFF61CA9C);
   static const secondary = Color(0xFF081F5C);
 
   // Text Color
@@ -19,8 +19,8 @@ class MyColor {
 
   // Grey
   static const darkGrey = Color(0xFF888888);
-  static const middleGrey = Color(0xFFDCDCDD);
-  static const lightGrey = Color(0xFFEFF1F3);
+  static const middleGrey = Color(0xFFE5E5EA);
+  static const lightGrey = Color(0xFFF4F5F9);
 
   // Text Field Color
   static const inputBorder = Color(0xFFAEAEB2);
