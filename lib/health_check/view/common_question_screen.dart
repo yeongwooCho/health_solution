@@ -56,6 +56,7 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
                 validator: (String? value) {
                   return null;
                 },
+                textInputType: TextInputType.number,
               ),
               const SizedBox(height: 16.0),
               CustomTextFormField(
@@ -65,6 +66,7 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
                 validator: (String? value) {
                   return null;
                 },
+                textInputType: TextInputType.number,
               ),
               const SizedBox(height: 16.0),
               CustomTextFormField(
@@ -74,6 +76,7 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
                 validator: (String? value) {
                   return null;
                 },
+                textInputType: TextInputType.number,
               ),
               const SizedBox(height: 16.0),
               const Padding(

@@ -292,10 +292,13 @@ class _InputContainerState extends State<_InputContainer> {
                   ),
                 ),
                 const SizedBox(width: 8.0),
-                const Text(
-                  '개인 정보 제공 및 동의',
-                  style: MyTextStyle.descriptionMedium,
-                  textAlign: TextAlign.center,
+                const Padding(
+                  padding: EdgeInsets.only(top: 2.0),
+                  child: Text(
+                    '개인 정보 제공 및 동의',
+                    style: MyTextStyle.descriptionMedium,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),
@@ -344,10 +347,13 @@ class _InputContainerState extends State<_InputContainer> {
                   ),
                 ),
                 const SizedBox(width: 8.0),
-                const Text(
-                  '마케팅 수신 메세지 동의',
-                  style: MyTextStyle.descriptionMedium,
-                  textAlign: TextAlign.center,
+                const Padding(
+                  padding: EdgeInsets.only(top: 2.0),
+                  child: Text(
+                    '마케팅 수신 메세지 동의',
+                    style: MyTextStyle.descriptionMedium,
+                    textAlign: TextAlign.center,
+                  ),
                 ),
               ],
             ),
