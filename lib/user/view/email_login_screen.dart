@@ -46,12 +46,12 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 48.0),
+                const SizedBox(height: 120.0),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 60.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Image.asset("asset/logo/logo.png"),
                 ),
-                const SizedBox(height: 24.0),
+                const SizedBox(height: 80.0),
                 CustomTextFormField(
                   onChanged: (String value) {},
                   onSaved: (String? value) {
