@@ -42,7 +42,7 @@ class SurveyCompletionScreen extends StatelessWidget {
                     ),
                   ),
                   const Text(
-                    '가 걱정됩니다.',
+                    ' 가 걱정됩니다.',
                     style: MyTextStyle.headTitle,
                   ),
                 ],
