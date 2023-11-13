@@ -45,10 +45,12 @@ class CustomCompletionScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 if (contentDescription != null)
+                  const SizedBox(height: 16.0),
+                if (contentDescription != null)
                   Text(
                     contentDescription!,
                     style: MyTextStyle.bodyRegular.copyWith(
-                      fontSize: 24.0,
+                      fontSize: 20.0,
                     ),
                     textAlign: TextAlign.center,
                   ),
@@ -57,13 +59,15 @@ class CustomCompletionScreen extends StatelessWidget {
             DefaultElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                  appBarTitle != "회원가입 완료"
-                      ? RouteNames.emailSignIn
-                      : RouteNames.root,
+                  appBarTitle == "회원가입 완료" || appBarTitle == "입력 완료"
+                      ? RouteNames.root
+                      : RouteNames.emailSignIn,
                   (route) => false,
                 );
               },
-              child: const Text('초기화면으로 이동'),
+              child: appBarTitle == "회원가입 완료" || appBarTitle == "입력 완료"
+                  ? const Text('홈으로 이동')
+                  : const Text('초기화면으로 이동'),
             ),
           ],
         ),

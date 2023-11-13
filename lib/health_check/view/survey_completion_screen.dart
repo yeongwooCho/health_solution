@@ -6,6 +6,8 @@ import 'package:health_solution/common/const/colors.dart';
 import 'package:health_solution/common/layout/default_appbar.dart';
 import 'package:health_solution/common/layout/default_button.dart';
 import 'package:health_solution/common/layout/default_layout.dart';
+import 'package:health_solution/common/model/screen_arguments.dart';
+import 'package:health_solution/common/variable/routes.dart';
 
 import '../../common/const/text_style.dart';
 
@@ -357,7 +359,20 @@ class _InputContainerState extends State<_InputContainer> {
                   isAgreeMarketing &&
                   phoneText != null &&
                   phoneText!.isNotEmpty
-              ? () {}
+              ? () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    RouteNames.completion,
+                    arguments: ScreenArguments<Map<String, String>>(
+                      data: {
+                        'appBarTitle': '입력 완료',
+                        'contentTitle': '정보가 입력 되었습니다.',
+                        'contentDescription':
+                            '고객님께서 입력하신 연락처로\n전문 상담원이 연락드리겠습니다.',
+                      },
+                    ),
+                    (route) => false,
+                  );
+                }
               : null,
           child: const Text('확인'),
         ),
