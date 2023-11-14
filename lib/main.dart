@@ -5,6 +5,7 @@ import 'package:intl/date_symbol_data_local.dart';
 
 import 'common/variable/routes.dart';
 import 'common/view/splash_screen.dart';
+import 'health_check/view/survey_completion_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,7 +48,8 @@ class MyApp extends StatelessWidget {
           // child: child,
         );
       },
-      home: const SplashScreen(),
+      // home: const SplashScreen(),
+      home: const SurveyCompletionScreen(),
     );
   }
 }

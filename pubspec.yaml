@@ -75,6 +75,12 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - asset/img/
+    - asset/img/product/
+    - asset/img/product/0/
+    - asset/img/product/1/
+    - asset/img/product/2/
+    - asset/img/product/3/
+    - asset/img/product/4/
     - asset/logo/
     - asset/social_button/
 

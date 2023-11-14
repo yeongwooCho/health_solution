@@ -116,9 +116,9 @@ class _Images extends StatelessWidget {
       case 2:
         return 21;
       case 3:
-        return 0;
+        return 4;
       case 4:
-        return 0;
+        return 7;
       default:
         return 0;
     }
