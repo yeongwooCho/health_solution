@@ -3,6 +3,8 @@ import 'package:health_solution/common/const/colors.dart';
 import 'package:health_solution/common/const/text_style.dart';
 import 'package:health_solution/common/layout/default_appbar.dart';
 import 'package:health_solution/common/layout/default_layout.dart';
+import 'package:health_solution/common/model/screen_arguments.dart';
+import 'package:health_solution/common/variable/routes.dart';
 
 import '../../common/layout/default_button.dart';
 
@@ -20,7 +22,16 @@ class ProductDetailScreen extends StatelessWidget {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
         child: DefaultElevatedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(
+              RouteNames.completion,
+              arguments: ScreenArguments<Map<String, String>>(data: {
+                "appBarTitle": '구매 완료',
+                "contentTitle": '상품 구매가 완료되었습니다.',
+                "contentDescription": '',
+              }),
+            );
+          },
           child: const Text('구매하기'),
         ),
       ),

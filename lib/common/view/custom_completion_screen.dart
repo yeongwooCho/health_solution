@@ -59,13 +59,17 @@ class CustomCompletionScreen extends StatelessWidget {
             DefaultElevatedButton(
               onPressed: () {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                  appBarTitle == "회원가입 완료" || appBarTitle == "입력 완료"
+                  appBarTitle == "회원가입 완료" ||
+                          appBarTitle == "입력 완료" ||
+                          appBarTitle == '구매 완료'
                       ? RouteNames.root
                       : RouteNames.emailSignIn,
                   (route) => false,
                 );
               },
-              child: appBarTitle == "회원가입 완료" || appBarTitle == "입력 완료"
+              child: appBarTitle == "회원가입 완료" ||
+                      appBarTitle == "입력 완료" ||
+                      appBarTitle == '구매 완료'
                   ? const Text('홈으로 이동')
                   : const Text('초기화면으로 이동'),
             ),
