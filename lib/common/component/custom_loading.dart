@@ -13,16 +13,14 @@ class CustomLoadingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: MyColor.barrier,
-      width: double.infinity,
-      height: double.infinity,
-      child: Center(
+    return Scaffold(
+      backgroundColor: MyColor.barrier,
+      body: Center(
         child: Container(
           width: MediaQuery.of(context).size.width * 0.8,
           height: 80,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: MyColor.scaffoldBackground,
             borderRadius: BorderRadius.circular(8.0),
           ),
           child: Center(

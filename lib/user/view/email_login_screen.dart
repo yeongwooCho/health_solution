@@ -23,6 +23,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   String? passwordText;
 
   bool isAutoLogin = true; // 자동 로그인 선택 여부
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -35,6 +36,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+      isLoading: isLoading,
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         child: Form(
@@ -112,7 +114,7 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
                         '로그인 상태 유지',
                         style: MyTextStyle.bodyBold.copyWith(
                           color:
-                              isAutoLogin ? MyColor.primary : MyColor.darkGrey,
+                          isAutoLogin ? MyColor.primary : MyColor.darkGrey,
                         ),
                       ),
                     ],
@@ -201,6 +203,16 @@ class _EmailLoginScreenState extends State<EmailLoginScreen> {
       // 해당 키를 가진 TextFormField 의 onSaved()를 모두 호출
       formKey.currentState!.save();
     }
+
+    setState(() {
+      isLoading = true;
+    });
+
+    await Future.delayed(Duration(seconds: 1));
+
+    setState(() {
+      isLoading = false;
+    });
 
     Navigator.of(context).pushNamedAndRemoveUntil(
       RouteNames.root,

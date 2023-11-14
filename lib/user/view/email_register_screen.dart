@@ -245,7 +245,8 @@ class _EmailRegisterScreenState extends State<EmailRegisterScreen> {
                           phoneText != null &&
                           phoneText!.isNotEmpty &&
                           isVerify
-                      ? () {
+                      ? () async {
+                          await Future.delayed(Duration(seconds: 1));
                           Navigator.of(context).pushNamedAndRemoveUntil(
                             RouteNames.completion,
                             (route) => false,
