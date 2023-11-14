@@ -17,7 +17,11 @@ class CommonQuestionScreen extends StatefulWidget {
 }
 
 class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
-  bool isSelected4 = false;
+  String? name;
+  String? age;
+  String? height;
+  String? weight;
+  List<String> ache = [];
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,11 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
               const SizedBox(height: 8.0),
               CustomTextFormField(
                 title: '당신의 이름은 무엇인가요?',
-                onChanged: (String? value) {},
+                onChanged: (String? value) {
+                  setState(() {
+                    name = value;
+                  });
+                },
                 onSaved: (String? value) {},
                 validator: (String? value) {
                   return null;
@@ -51,7 +59,11 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
               const SizedBox(height: 16.0),
               CustomTextFormField(
                 title: '나이를 알려주세요',
-                onChanged: (String? value) {},
+                onChanged: (String? value) {
+                  setState(() {
+                    age = value;
+                  });
+                },
                 onSaved: (String? value) {},
                 validator: (String? value) {
                   return null;
@@ -61,7 +73,11 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
               const SizedBox(height: 16.0),
               CustomTextFormField(
                 title: '키를 알려주세요(cm)',
-                onChanged: (String? value) {},
+                onChanged: (String? value) {
+                  setState(() {
+                    height = value;
+                  });
+                },
                 onSaved: (String? value) {},
                 validator: (String? value) {
                   return null;
@@ -71,7 +87,11 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
               const SizedBox(height: 16.0),
               CustomTextFormField(
                 title: '몸무게를 알려주세요(kg)',
-                onChanged: (String? value) {},
+                onChanged: (String? value) {
+                  setState(() {
+                    weight = value;
+                  });
+                },
                 onSaved: (String? value) {},
                 validator: (String? value) {
                   return null;
@@ -89,30 +109,21 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
               const _SelectableContainer(),
               const SizedBox(height: 40.0),
               DefaultElevatedButton(
-                onPressed: () async {
-                  Navigator.of(context).pushNamed(
-                    RouteNames.surveyController,
-                    arguments: ScreenArguments<int>(data: 0),
-                  );
-                },
-                // DefaultElevatedButton(
-                //   onPressed: () async {
-                //     await Future.delayed(const Duration(seconds: 1));
-                //     Navigator.of(context).pushNamed(
-                //       RouteNames.survey,
-                //       arguments: ScreenArguments<Map<String, dynamic>>(data: {
-                //         'appBarTitle': '혈관 및 혈액 순환',
-                //         'title': '혈관 및 혈액 순환에 겪고 있는\n증상을 모두 선택해 주세요.',
-                //         'items': [
-                //           '얼굴이 자주 창백해져요',
-                //           '잇몸이 붓고 피가 나요',
-                //           '손발 끝이 자주 저려요',
-                //           '상처가 잘 낫지 않아요',
-                //           '해당 사항은 없지만 앞으로가 걱정돼요',
-                //         ],
-                //       }),
-                //     );
-                //   },
+                onPressed: name == null ||
+                        age == null ||
+                        height == null ||
+                        weight == null ||
+                        name!.isEmpty ||
+                        age!.isEmpty ||
+                        height!.isEmpty ||
+                        weight!.isEmpty
+                    ? null
+                    : () async {
+                        Navigator.of(context).pushNamed(
+                          RouteNames.surveyController,
+                          arguments: ScreenArguments<int>(data: 0),
+                        );
+                      },
                 child: const Text('다음'),
               ),
             ],
