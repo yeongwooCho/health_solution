@@ -48,8 +48,7 @@ class MyApp extends StatelessWidget {
           // child: child,
         );
       },
-      // home: const SplashScreen(),
-      home: const SurveyCompletionScreen(),
+      home: const SplashScreen(),
     );
   }
 }
