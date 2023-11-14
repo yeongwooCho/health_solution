@@ -5,6 +5,7 @@ import 'package:health_solution/health_check/view/survey_completion_screen.dart'
 import 'package:health_solution/health_check/view/survey_controller_screen.dart';
 import 'package:health_solution/user/view/find_email_screen.dart';
 
+import '../../health_check/view/product_detail_screen.dart';
 import '../../user/view/email_login_screen.dart';
 import '../../user/view/email_register_screen.dart';
 import '../../user/view/find_password_change_screen.dart';
@@ -33,6 +34,7 @@ class RouteNames {
   static const String commonQuestion = '/common/question';
   static const String surveyController = '/survey/controller';
   static const String surveyCompletion = '/survey/completion';
+  static const String productDefault = '/product/detail';
 }
 
 Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
@@ -88,4 +90,10 @@ Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
     return SurveyControllerScreen(index: args.data);
   },
   RouteNames.surveyCompletion: (_) => SurveyCompletionScreen(),
+  RouteNames.productDefault: (context) {
+    final args =
+        ModalRoute.of(context)?.settings.arguments as ScreenArguments<List<String>>;
+
+    return ProductDetailScreen(item: args.data);
+  },
 };

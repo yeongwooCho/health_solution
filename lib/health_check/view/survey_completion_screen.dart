@@ -92,7 +92,12 @@ class ShowGrid extends StatelessWidget {
         final item = getItemData(index: index);
         return GestureDetector(
           onTap: () {
-            print(index);
+            List<String> tempItem = item;
+            tempItem.add(index.toString());
+            Navigator.of(context).pushNamed(
+              RouteNames.productDefault,
+              arguments: ScreenArguments<List<String>>(data: tempItem),
+            );
           },
           child: GridItem(
             index: index,
@@ -176,7 +181,7 @@ class GridItem extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Image.asset(
-          'asset/img/item_${index + 1}.png',
+          'asset/img/item_$index.png',
           fit: BoxFit.contain,
         ),
         const SizedBox(height: 16.0),
@@ -382,12 +387,6 @@ class _InputContainerState extends State<_InputContainer> {
               : null,
           child: const Text('확인'),
         ),
-        // const SizedBox(height: 20.0),
-        // DefaultElevatedButton(
-        //   isBorderSide: true,
-        //   onPressed: () {},
-        //   child: const Text('홈으로 이동'),
-        // ),
       ],
     );
   }
