@@ -28,8 +28,9 @@ class SurveyControllerScreen extends StatelessWidget {
                 arguments: ScreenArguments<int>(data: index + 1),
               );
             } else {
-              Navigator.of(context).pushNamed(
+              Navigator.of(context).pushNamedAndRemoveUntil(
                 RouteNames.surveyCompletion,
+                (route) => false,
               );
             }
           },

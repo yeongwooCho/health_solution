@@ -23,13 +23,14 @@ class ProductDetailScreen extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
         child: DefaultElevatedButton(
           onPressed: () {
-            Navigator.of(context).pushNamed(
+            Navigator.of(context).pushNamedAndRemoveUntil(
               RouteNames.completion,
               arguments: ScreenArguments<Map<String, String>>(data: {
                 "appBarTitle": '구매 완료',
                 "contentTitle": '상품 구매가 완료되었습니다.',
                 "contentDescription": '',
               }),
+              (route) => false,
             );
           },
           child: const Text('구매하기'),
