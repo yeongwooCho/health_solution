@@ -3,10 +3,10 @@ import 'package:health_solution/common/component/custom_text_form_field.dart';
 import 'package:health_solution/common/const/colors.dart';
 import 'package:health_solution/common/const/text_style.dart';
 import 'package:health_solution/common/layout/default_button.dart';
-import 'package:health_solution/common/model/screen_arguments.dart';
 
 import '../../common/layout/default_appbar.dart';
 import '../../common/layout/default_layout.dart';
+import '../../common/model/screen_arguments.dart';
 import '../../common/variable/routes.dart';
 
 class CommonQuestionScreen extends StatefulWidget {
@@ -17,6 +17,7 @@ class CommonQuestionScreen extends StatefulWidget {
 }
 
 class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
+  bool isLoading = false;
   String? name;
   String? age;
   String? height;
@@ -26,6 +27,7 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+      isLoading: isLoading,
       appbar: const DefaultAppBar(title: "공통 질문"),
       child: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
@@ -110,15 +112,25 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
               const SizedBox(height: 40.0),
               DefaultElevatedButton(
                 onPressed: name == null ||
-                        age == null ||
-                        height == null ||
-                        weight == null ||
-                        name!.isEmpty ||
-                        age!.isEmpty ||
-                        height!.isEmpty ||
-                        weight!.isEmpty
+                    age == null ||
+                    height == null ||
+                    weight == null ||
+                    name!.isEmpty ||
+                    age!.isEmpty ||
+                    height!.isEmpty ||
+                    weight!.isEmpty
                     ? null
                     : () async {
+                        FocusScope.of(context).unfocus();
+                        setState(() {
+                          isLoading = true;
+                        });
+
+                        await Future.delayed(const Duration(milliseconds: 500));
+
+                        setState(() {
+                          isLoading = false;
+                        });
                         Navigator.of(context).pushNamed(
                           RouteNames.surveyController,
                           arguments: ScreenArguments<int>(data: 0),
@@ -225,17 +237,7 @@ class _SelectableContainer extends StatefulWidget {
 }
 
 class _SelectableContainerState extends State<_SelectableContainer> {
-  List<String> items = [
-    '혈관 및 혈액순환',
-    '소화 및 장',
-    '피부',
-    '눈',
-    '두뇌 건강',
-    '피로감',
-    '관절 및 뼈',
-    '면역',
-    '모발'
-  ];
+  List<String> items = ['혈관', '소화', '피부', '눈', '두뇌', '간', '관절', '면역', '두피'];
   List<String> selectedItems = [];
 
   @override
