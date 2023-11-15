@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/component/custom_text_form_field.dart';
 import 'package:health_solution/common/const/colors.dart';
@@ -31,29 +29,17 @@ class SurveyCompletionScreen extends StatelessWidget {
                 '고객님은 현재',
                 style: MyTextStyle.headTitle,
               ),
-              Row(
-                children: [
-                  ImageFiltered(
-                    imageFilter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                    child: Container(
-                      child: Text(
-                        '당뇨병과 심혈관',
-                        style: MyTextStyle.headTitle,
-                      ),
-                    ),
-                  ),
-                  const Text(
-                    ' 가 걱정됩니다.',
-                    style: MyTextStyle.headTitle,
-                  ),
-                ],
+              Text(
+                getSurveyCompletionDescription(),
+                style: MyTextStyle.bodyRegular,
+                overflow: TextOverflow.clip,
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 40.0),
               Container(
                 color: MyColor.darkGrey,
                 height: 1.0,
               ),
-              const SizedBox(height: 20.0),
+              const SizedBox(height: 40.0),
               const Text(
                 '추천상품',
                 style: MyTextStyle.bodyTitleBold,
@@ -71,6 +57,61 @@ class SurveyCompletionScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  String getSurveyCompletionDescription() {
+    String returnString = '';
+    if (completionData[0] != 0) {
+      returnString += '[혈관${(completionData[0] * 100).round()}%]  ';
+    }
+
+    if (completionData[1] != 0) {
+      returnString += '[장${(completionData[1] * 100).round()}%]  ';
+    }
+
+    if (completionData[2] != 0) {
+      returnString += '[피부${(completionData[2] * 100).round()}%]  ';
+    }
+
+    if (completionData[3] != 0) {
+      returnString += '[눈${(completionData[3] * 100).round()}%]  ';
+    }
+
+    if (completionData[4] != 0) {
+      returnString += '[두뇌${(completionData[4] * 100).round()}%]  ';
+    }
+
+    if (completionData[5] != 0) {
+      returnString += '[간${(completionData[5] * 100).round()}%]  ';
+    }
+
+    if (completionData[6] != 0) {
+      returnString += '[관절${(completionData[6] * 100).round()}%]  ';
+    }
+
+    if (completionData[7] != 0) {
+      returnString += '[면역${(completionData[7] * 100).round()}%]  ';
+    }
+
+    if (completionData[8] != 0) {
+      returnString += '[두피${(completionData[8] * 100).round()}%]  ';
+    }
+
+    if ((completionData[0] == 0) &&
+        (completionData[1] == 0) &&
+        (completionData[2] == 0) &&
+        (completionData[3] == 0) &&
+        (completionData[4] == 0) &&
+        (completionData[5] == 0) &&
+        (completionData[6] == 0) &&
+        (completionData[7] == 0) &&
+        (completionData[8] == 0)) {
+      return '매우 건강한 상태로 예상됩니다.';
+    }
+
+    returnString += '문제가 있을 것으로 예상됩니다.';
+
+    return returnString;
   }
 }
 
@@ -341,7 +382,7 @@ class _InputContainerState extends State<_InputContainer> {
                   decoration: BoxDecoration(
                     border: Border.all(
                       width: 1.2,
-                      color: MyColor.primary,
+                      color: MyColor.darkGrey,
                     ),
                     borderRadius: BorderRadius.circular(100.0),
                   ),
@@ -355,7 +396,7 @@ class _InputContainerState extends State<_InputContainer> {
                     child: Text(
                       '선택',
                       style: MyTextStyle.descriptionRegular.copyWith(
-                        color: MyColor.primary,
+                        color: MyColor.darkGrey,
                       ),
                     ),
                   ),
@@ -376,7 +417,6 @@ class _InputContainerState extends State<_InputContainer> {
         const SizedBox(height: 40.0),
         DefaultElevatedButton(
           onPressed: isAgreePersonal &&
-                  isAgreeMarketing &&
                   phoneText != null &&
                   phoneText!.isNotEmpty
               ? () {

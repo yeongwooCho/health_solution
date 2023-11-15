@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/component/show/show_cupertino_alert.dart';
 import 'package:health_solution/common/const/colors.dart';
+import 'package:health_solution/common/const/data.dart';
+import 'package:health_solution/common/layout/default_button.dart';
 import 'package:health_solution/common/view/custom_list_screen.dart';
 
 import '../../common/const/text_style.dart';
@@ -26,18 +28,11 @@ class SurveyScreen extends StatefulWidget {
 }
 
 class _SurveyScreenState extends State<SurveyScreen> {
-  String? selectedItem;
-  bool isLoading = false;
+  List<String> selectedItems = [];
 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      isLoading: isLoading,
-      loadingWidget: const Center(
-        child: CircularProgressIndicator(
-          color: MyColor.darkGrey,
-        ),
-      ),
       appbar: DefaultAppBar(
         title: widget.appBarTitle,
         leading: BackButton(
@@ -62,38 +57,58 @@ class _SurveyScreenState extends State<SurveyScreen> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 32.0, horizontal: 24.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 8.0),
-            Text(
-              widget.title,
-              style: MyTextStyle.headTitle,
-            ),
-            const SizedBox(height: 40.0),
-            CustomListScreen(
-              shrinkWrap: true,
-              itemCount: widget.items.length,
-              itemBuilder: (BuildContext context, int index) {
-                return GestureDetector(
-                  onTap: () async {
-                    setState(() {
-                      isLoading = true;
-                      selectedItem = widget.items[index];
-                    });
-                    await Future.delayed(Duration(seconds: 1));
-
-                    setState(() {
-                      widget.onTapItem();
-                      isLoading = false;
-                    });
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 8.0),
+                Text(
+                  widget.title,
+                  style: MyTextStyle.headTitle,
+                ),
+                const SizedBox(height: 40.0),
+                CustomListScreen(
+                  shrinkWrap: true,
+                  itemCount: widget.items.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    String selectedItem = widget.items[index];
+                    return GestureDetector(
+                      onTap: () async {
+                        if (selectedItems.contains(selectedItem)) {
+                          selectedItems.remove(selectedItem);
+                        } else {
+                          selectedItems.add(selectedItem);
+                        }
+                        setState(() {});
+                      },
+                      child: _renderCustomCard(
+                        title: '${index + 1})  ${widget.items[index]}',
+                        isSelected: selectedItems.contains(
+                          widget.items[index],
+                        ),
+                      ),
+                    );
                   },
-                  child: _renderCustomCard(
-                      title: '${index + 1})  ${widget.items[index]}',
-                      isSelected: selectedItem == null
-                          ? false
-                          : selectedItem! == widget.items[index]),
-                );
-              },
+                ),
+              ],
+            ),
+            DefaultElevatedButton(
+              onPressed: selectedItems.isEmpty
+                  ? null
+                  : () {
+                      int selectedItemsLength = selectedItems
+                          .where((element) => element != '해당 사항은 없지만 앞으로가 걱정돼요')
+                          .length;
+                      int totalItemsLength = widget.items
+                          .where((element) => element != '해당 사항은 없지만 앞으로가 걱정돼요')
+                          .length;
+                      completionData
+                          .add(selectedItemsLength / totalItemsLength);
+                      widget.onTapItem();
+                    },
+              child: const Text('다음'),
             ),
           ],
         ),

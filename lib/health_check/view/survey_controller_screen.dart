@@ -5,7 +5,7 @@ import 'package:health_solution/common/model/screen_arguments.dart';
 import 'package:health_solution/common/variable/routes.dart';
 import 'package:health_solution/health_check/view/survey_screen.dart';
 
-class SurveyControllerScreen extends StatelessWidget {
+class SurveyControllerScreen extends StatefulWidget {
   final int index;
 
   const SurveyControllerScreen({
@@ -14,18 +14,24 @@ class SurveyControllerScreen extends StatelessWidget {
   });
 
   @override
+  State<SurveyControllerScreen> createState() => _SurveyControllerScreenState();
+}
+
+class _SurveyControllerScreenState extends State<SurveyControllerScreen> {
+  @override
   Widget build(BuildContext context) {
+    print("completionData $completionData");
     return DefaultLayout(
       child: GestureDetector(
         child: SurveyScreen(
-          appBarTitle: surveyData[index][0],
-          title: surveyData[index][1],
-          items: surveyData[index][2],
+          appBarTitle: surveyData[widget.index][0],
+          title: surveyData[widget.index][1],
+          items: surveyData[widget.index][2],
           onTapItem: () {
-            if (index < 8 && index >= 0) {
+            if (widget.index < 8 && widget.index >= 0) {
               Navigator.of(context).pushReplacementNamed(
                 RouteNames.surveyController,
-                arguments: ScreenArguments<int>(data: index + 1),
+                arguments: ScreenArguments<int>(data: widget.index + 1),
               );
             } else {
               Navigator.of(context).pushNamedAndRemoveUntil(

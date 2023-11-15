@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/component/custom_text_form_field.dart';
 import 'package:health_solution/common/const/colors.dart';
+import 'package:health_solution/common/const/data.dart';
 import 'package:health_solution/common/const/text_style.dart';
 import 'package:health_solution/common/layout/default_button.dart';
 
@@ -121,7 +122,7 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
                     weight!.isEmpty
                     ? null
                     : () async {
-                        FocusScope.of(context).unfocus();
+                  FocusScope.of(context).unfocus();
                         setState(() {
                           isLoading = true;
                         });
@@ -131,6 +132,7 @@ class _CommonQuestionScreenState extends State<CommonQuestionScreen> {
                         setState(() {
                           isLoading = false;
                         });
+                        completionData = [];
                         Navigator.of(context).pushNamed(
                           RouteNames.surveyController,
                           arguments: ScreenArguments<int>(data: 0),
