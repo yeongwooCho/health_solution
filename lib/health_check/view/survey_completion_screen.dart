@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:health_solution/common/component/custom_text_form_field.dart';
 import 'package:health_solution/common/const/colors.dart';
+import 'package:health_solution/common/const/data.dart';
 import 'package:health_solution/common/layout/default_appbar.dart';
 import 'package:health_solution/common/layout/default_button.dart';
 import 'package:health_solution/common/layout/default_layout.dart';
@@ -287,7 +288,11 @@ class _InputContainerState extends State<_InputContainer> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 10.0, right: 8.0, top: 0.0, bottom: 0.0),
+                      left: 10.0,
+                      right: 10.0,
+                      top: 2.0,
+                      bottom: 0.0,
+                    ),
                     child: Text(
                       '필수',
                       style: MyTextStyle.descriptionRegular.copyWith(
@@ -342,9 +347,13 @@ class _InputContainerState extends State<_InputContainer> {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.only(
-                        left: 10.0, right: 8.0, top: 0.0, bottom: 0.0),
+                      left: 10.0,
+                      right: 10.0,
+                      top: 2.0,
+                      bottom: 0.0,
+                    ),
                     child: Text(
-                      '필수',
+                      '선택',
                       style: MyTextStyle.descriptionRegular.copyWith(
                         color: MyColor.primary,
                       ),
