@@ -26,11 +26,17 @@ class SurveyCompletionScreen extends StatelessWidget {
             children: [
               const SizedBox(height: 8.0),
               const Text(
-                '고객님은 현재',
+                '현재 고객님의 몸에는',
                 style: MyTextStyle.headTitle,
               ),
               Text(
                 getSurveyCompletionDescription(),
+                style: MyTextStyle.bodyBold,
+                overflow: TextOverflow.clip,
+              ),
+              const SizedBox(height: 20.0),
+              const Text(
+                '고객님의 증상에 적합한 제품을 추천드립니다.',
                 style: MyTextStyle.bodyRegular,
                 overflow: TextOverflow.clip,
               ),
@@ -60,42 +66,6 @@ class SurveyCompletionScreen extends StatelessWidget {
   }
 
   String getSurveyCompletionDescription() {
-    String returnString = '';
-    if (completionData[0] != 0) {
-      returnString += '[혈관${(completionData[0] * 100).round()}%]  ';
-    }
-
-    if (completionData[1] != 0) {
-      returnString += '[장${(completionData[1] * 100).round()}%]  ';
-    }
-
-    if (completionData[2] != 0) {
-      returnString += '[피부${(completionData[2] * 100).round()}%]  ';
-    }
-
-    if (completionData[3] != 0) {
-      returnString += '[눈${(completionData[3] * 100).round()}%]  ';
-    }
-
-    if (completionData[4] != 0) {
-      returnString += '[두뇌${(completionData[4] * 100).round()}%]  ';
-    }
-
-    if (completionData[5] != 0) {
-      returnString += '[간${(completionData[5] * 100).round()}%]  ';
-    }
-
-    if (completionData[6] != 0) {
-      returnString += '[관절${(completionData[6] * 100).round()}%]  ';
-    }
-
-    if (completionData[7] != 0) {
-      returnString += '[면역${(completionData[7] * 100).round()}%]  ';
-    }
-
-    if (completionData[8] != 0) {
-      returnString += '[두피${(completionData[8] * 100).round()}%]  ';
-    }
 
     if ((completionData[0] == 0) &&
         (completionData[1] == 0) &&
@@ -109,9 +79,10 @@ class SurveyCompletionScreen extends StatelessWidget {
       return '매우 건강한 상태로 예상됩니다.';
     }
 
-    returnString += '문제가 있을 것으로 예상됩니다.';
+    double valueData =
+        completionData.reduce((value, element) => value + element);
 
-    return returnString;
+    return '[총 ${(valueData / 9 * 100).round()}%]의 문제가 있을 것으로 예상됩니다.';
   }
 }
 
